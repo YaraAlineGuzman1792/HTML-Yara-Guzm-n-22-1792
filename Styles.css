@@ -1,0 +1,40 @@
+/* Estilos personalizados */
+body {
+    background-color: #343a40; /* Fondo gris oscuro */
+    color: #ff5722; /* Texto fucsia */
+    font-family: "Arial", sans-serif; /* Fuente bonita */
+    margin: 0; /* Elimina el margen predeterminado del cuerpo */
+    display: flex; /* Utiliza flexbox para centrar vertical y horizontalmente */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    min-height: 100vh; /* Asegura que el contenido se estire al menos al 100% de la altura de la ventana */
+}
+
+#container {
+    text-align: center; /* Alinea el contenido dentro del contenedor */
+}
+
+button {
+    background-color: #000; /* Botones negros */
+    color: #ff5722; /* Texto fucsia para los botones */
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    font-family: "Arial", sans-serif; /* Fuente bonita */
+    position: relative; /* Añadimos posición relativa para el efecto neon */
+}
+
+button:hover {
+    background-color: #333; /* Botones negros al pasar el ratón */
+    color: #fff; /* Texto blanco al pasar el ratón */
+    text-shadow: 0 0 10px #ff5722, 0 0 20px #ff5722, 0 0 30px #ff5722; /* Efecto de texto neon al pasar el ratón */
+}
+
+/* Efecto neon para el título principal */
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #ff5722; /* Texto fucsia */
+    text-shadow: 0 0 10px #ff5722, 0 0 20px #ff5722, 0 0 30px #ff5722; /* Efecto de texto neon */
+}
