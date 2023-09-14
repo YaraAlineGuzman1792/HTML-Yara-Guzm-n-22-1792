@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor de Música</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Enlaza el archivo CSS externo -->
+</head>
+<body>
+    <div id="player">
+        <h1>Reproductor de Música</h1>
+        <audio id="audio" controls></audio>
+        <input type="file" id="fileInput" accept=".mp3, .ogg" multiple onchange="loadAudio()">
+        <button id="prevButton" onclick="previousTrack()">Anterior</button>
+        <button id="playPauseButton" onclick="playPause()">Play/Pausa</button>
+        <button id="nextButton" onclick="nextTrack()">Siguiente</button>
+    </div>
+
+    <script>
+        let playlist = []; // Almacena la lista de reproducción
+        let currentTrack = 0; // Índice de la pista actual
+
+        const audio = document.getElementById('audio');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        const playPauseButton = document.getElementById('playPauseButton');
+
+        function loadAudio() {
+            const fileInput = document.getElementById('fileInput');
+
+            if (fileInput.files.length > 0) {
+                playlist = Array.from(fileInput.files); // Agrega los archivos a la lista de reproducción
+                currentTrack = 0; // Reinicia el índice de la pista actual
+                playTrack(); // Reproduce la primera pista
+            }
+        }
+
+        function playPause() {
+            if (audio.paused) {
+                audio.play();
+                playPauseButton.textContent = "Pausa";
+            } else {
+                audio.pause();
+                playPauseButton.textContent = "Reproducir";
+            }
+        }
+
+        function playTrack() {
+            if (playlist.length === 0) return;
+
+            const file = playlist[currentTrack];
+            const objectURL = URL.createObjectURL(file);
+            audio.src = objectURL;
+            audio.play();
+
+            // Habilita/deshabilita los botones de "Anterior" y "Siguiente" según la posición actual en la lista de reproducción
+            prevButton.disabled = currentTrack === 0;
+            nextButton.disabled = currentTrack === playlist.length - 1;
+        }
+
+        function nextTrack() {
+            if (currentTrack < playlist.length - 1) {
+                currentTrack++;
+                playTrack();
+            }
+        }
+
+        function previousTrack() {
+            if (currentTrack > 0) {
+                currentTrack--;
+                playTrack();
+            }
+        }
+
+        audio.addEventListener('ended', function() {
+            // Reproduce la siguiente pista cuando la actual termina
+            nextTrack();
+        });
+    </script>
+</body>
+</html>
